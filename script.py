@@ -35,11 +35,11 @@ def azimut(unitime):
   theta_Bam = sternzeit_gr + pos_B + unitime*1.002738
   
   tau_sol = theta_Bam/12.*pi - alpha
-
   M = atan(tan(delta)/cos(tau_sol))
 
   az = atan((cos(M)*tan(tau_sol))/(sin(Phi-M)))
-
+  if(az < 0):
+    az = 2*pi + az
   print("alpha = ", hmin(alpha*12./pi,0), hmin(alpha*12./pi,1), hmin(alpha*12./pi,2) )
   print("delta = ",  hmin(delta*180./pi,0), hmin(delta*180./pi,1), hmin(delta*180./pi,2) )
   print("theta_Bam =", hmin(theta_Bam,0), hmin(theta_Bam,1), hmin(theta_Bam,2) )
@@ -47,3 +47,5 @@ def azimut(unitime):
   print("M = ", hmin(M*180/pi,0), hmin(M*180/pi,1), hmin(M*180/pi,2) )
   print("a_Sonne = ", hmin(az*180/pi, 0), hmin(az*180/pi, 1), hmin(az*180/pi, 2))
   
+
+azimut(8.99773)
